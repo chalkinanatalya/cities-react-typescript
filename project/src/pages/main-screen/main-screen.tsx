@@ -160,7 +160,6 @@ function MainScreen(): JSX.Element {
                       <p className="place-card__type">Private room</p>
                     </div>
                   </article>
-
                   <article className="cities__card place-card">
                     <div className="cities__image-wrapper place-card__image-wrapper">
                       <a href="#">
