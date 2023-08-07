@@ -1,15 +1,17 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainScreen from '../../pages/main-screen/main-screen';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus} from '../../const';
 import LoginScreen from '../../pages/login-screen/login-screen';
 import FavoritesScreen from '../../pages/favorites-screen/favorites-screen';
 import PropertyEmptyScreen from '../../pages/property-empty-screen/property-empty-screen';
 import PropertyScreen from '../../pages/property-screen/property-screen';
 import FavoritesEmptyScreen from '../../pages/favorites-empty-screen/favorites-empty-screen';
+import PrivateRoute from '../private-route/private-route';
 
 type AppMainProps = {
-  proposalCount: number
+  proposalCount: number,
 }
+
 
 function App({proposalCount}: AppMainProps): JSX.Element {
   return (
@@ -17,7 +19,7 @@ function App({proposalCount}: AppMainProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainScreen proposalCount={proposalCount}/>}
+          element={<MainScreen proposalCount={proposalCount} />}
         />
         <Route
           path={AppRoute.Login}
@@ -25,15 +27,26 @@ function App({proposalCount}: AppMainProps): JSX.Element {
         />
         <Route
           path={AppRoute.Favorites}
-          element={<FavoritesScreen />}
+          element={
+            <PrivateRoute
+              authorizationStatus={AuthorizationStatus.NoAuth}
+            >
+              <FavoritesScreen />
+            </PrivateRoute>
+          }
         />
         <Route
           path={AppRoute.FavoritesEmpty}
-          element={<FavoritesEmptyScreen />}
+          element={
+            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+              <FavoritesEmptyScreen />
+            </PrivateRoute>
+          }
         />
         <Route
           path={AppRoute.PropertyEmpty}
-          element={<PropertyEmptyScreen />}
+          element=
+            {<PropertyEmptyScreen />}
         />
         <Route
           path={AppRoute.Property}
