@@ -7,13 +7,15 @@ import PropertyEmptyScreen from '../../pages/property-empty-screen/property-empt
 import PropertyScreen from '../../pages/property-screen/property-screen';
 import FavoritesEmptyScreen from '../../pages/favorites-empty-screen/favorites-empty-screen';
 import PrivateRoute from '../private-route/private-route';
+import { Offer } from '../../types/offer';
 
 type AppMainProps = {
-  proposalCount: number,
+  proposalCount: number;
+  offers: Offer;
 }
 
 
-function App({proposalCount}: AppMainProps): JSX.Element {
+function App({proposalCount, offers}: AppMainProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -50,7 +52,11 @@ function App({proposalCount}: AppMainProps): JSX.Element {
         />
         <Route
           path={AppRoute.Property}
-          element={<PropertyScreen />}
+          element={
+            <PropertyScreen
+              offers={offers}
+            />
+          }
         />
       </Routes>
 
