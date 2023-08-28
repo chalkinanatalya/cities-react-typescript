@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
 import Logo from '../../components/logo/logo';
+import { Offers } from '../../types/offer';
 
-function PropertyScreen(): JSX.Element {
+type PropertyScreenProps = {
+  offers: Offers;
+}
+
+function PropertyScreen(props: PropertyScreenProps): JSX.Element {
   return (
     <>
       <div style={{ display: 'none' }}>
