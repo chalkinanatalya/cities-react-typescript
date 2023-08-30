@@ -7,11 +7,11 @@ import PropertyEmptyScreen from '../../pages/property-empty-screen/property-empt
 import PropertyScreen from '../../pages/property-screen/property-screen';
 import FavoritesEmptyScreen from '../../pages/favorites-empty-screen/favorites-empty-screen';
 import PrivateRoute from '../private-route/private-route';
-import { Offer } from '../../types/offer';
+import { Offers } from '../../types/offer';
 
 type AppMainProps = {
   proposalCount: number;
-  offers: Offer;
+  offers: Offers;
 }
 
 
