@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import { offers } from './mocks/offers';
+import { offers, offer } from './mocks/offers';
 
 const Setting = {
   RENT_PROPOSAL: 350,
@@ -16,6 +16,7 @@ root.render(
     <App
       proposalCount = {Setting.RENT_PROPOSAL}
       offers={offers}
+      offer={offer}
     />
   </React.StrictMode>,
 );

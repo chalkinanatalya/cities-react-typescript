@@ -7,21 +7,22 @@ import PropertyEmptyScreen from '../../pages/property-empty-screen/property-empt
 import PropertyScreen from '../../pages/property-screen/property-screen';
 import FavoritesEmptyScreen from '../../pages/favorites-empty-screen/favorites-empty-screen';
 import PrivateRoute from '../private-route/private-route';
-import { Offers } from '../../types/offer';
+import { Offer, Offers } from '../../types/offer';
 
 type AppMainProps = {
   proposalCount: number;
   offers: Offers;
+  offer: Offer;
 }
 
 
-function App({proposalCount, offers}: AppMainProps): JSX.Element {
+function App({proposalCount, offer, offers}: AppMainProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainScreen proposalCount={proposalCount} />}
+          element={<MainScreen proposalCount={proposalCount} offer={offer} />}
         />
         <Route
           path={AppRoute.Login}
@@ -31,9 +32,9 @@ function App({proposalCount, offers}: AppMainProps): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
-              <FavoritesScreen />
+              <FavoritesScreen offers={offers}/>
             </PrivateRoute>
           }
         />
