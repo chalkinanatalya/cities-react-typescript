@@ -1,11 +1,13 @@
 import { nanoid } from '@reduxjs/toolkit';
 import PlaceCard from '../place-card/place-card';
+import { Offer } from '../../types/offer';
 
 type PlaceListProps = {
   count: number;
+  offer: Offer;
 }
 
-function PlaceList({count}:PlaceListProps): JSX.Element {
+function PlaceList({count, offer}:PlaceListProps): JSX.Element {
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
@@ -27,7 +29,7 @@ function PlaceList({count}:PlaceListProps): JSX.Element {
           </ul>
         </form>
         <div className="cities__places-list places__list tabs__content">
-          {Array(5).fill(null).map(() => <PlaceCard key={nanoid()} />)}
+          {Array(5).fill(null).map(() => <PlaceCard isNearPlace={false} key={nanoid()} offer={offer}/>)}
         </div>
       </section>
       <div className="cities__right-section">

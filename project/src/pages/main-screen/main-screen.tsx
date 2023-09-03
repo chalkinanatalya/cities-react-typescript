@@ -1,12 +1,14 @@
 import Logo from '../../components/logo/logo';
 import LocationList from '../../components/location-list/location-list';
 import PlaceList from '../../components/place-list/place-list';
+import { Offer } from '../../types/offer';
 
 type MainScreenProps = {
   proposalCount: number;
+  offer: Offer;
 }
 
-function MainScreen({proposalCount}: MainScreenProps): JSX.Element {
+function MainScreen({proposalCount, offer}: MainScreenProps): JSX.Element {
   return (
     <>
       <div style={{ display: 'none' }}>
@@ -24,7 +26,7 @@ function MainScreen({proposalCount}: MainScreenProps): JSX.Element {
             </section>
           </div>
           <div className="cities">
-            <PlaceList count={proposalCount}/>
+            <PlaceList count={proposalCount} offer={offer}/>
           </div>
         </main>
       </div>
