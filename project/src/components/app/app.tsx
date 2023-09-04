@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainScreen from '../../pages/main-screen/main-screen';
-import { AppRoute, AuthorizationStatus} from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import LoginScreen from '../../pages/login-screen/login-screen';
 import FavoritesScreen from '../../pages/favorites-screen/favorites-screen';
 import PropertyEmptyScreen from '../../pages/property-empty-screen/property-empty-screen';
@@ -16,7 +16,7 @@ type AppMainProps = {
 }
 
 
-function App({proposalCount, offer, offers}: AppMainProps): JSX.Element {
+function App({ proposalCount, offer, offers }: AppMainProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -34,7 +34,7 @@ function App({proposalCount, offer, offers}: AppMainProps): JSX.Element {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.Auth}
             >
-              <FavoritesScreen offers={offers}/>
+              <FavoritesScreen offer={offer} />
             </PrivateRoute>
           }
         />
@@ -55,7 +55,7 @@ function App({proposalCount, offer, offers}: AppMainProps): JSX.Element {
           path={AppRoute.Property}
           element={
             <PropertyScreen
-              offers={offers}
+              offers={offers} offer={offer}
             />
           }
         />

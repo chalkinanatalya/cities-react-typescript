@@ -1,7 +1,8 @@
 import Logo from '../../components/logo/logo';
 import { Offer, Offers } from '../../types/offer';
 import { nanoid } from '@reduxjs/toolkit';
-import PlaceCard from '../../components/place-card/place-card';
+import PlaceCardInfo from '../../components/place-card-info/place-card-info';
+import { Link } from 'react-router-dom';
 
 type PropertyScreenProps = {
   offers: Offers;
@@ -176,7 +177,7 @@ function PropertyScreen(props: PropertyScreenProps): JSX.Element {
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
-                {offers.slice(0, 3).map((off) => <PlaceCard offer={off} isNearPlace key={nanoid()} />)}
+                {offers.slice(0, 3).map((off) => (<article className="cities__card place-card" key={nanoid()}> {offer.isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ''}<div className="near-places__image-wrapper place-card__image-wrapper"><Link to='/'><img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="" /></Link></div><PlaceCardInfo offer={off} /></article>))}
               </div>
             </section>
           </div>
