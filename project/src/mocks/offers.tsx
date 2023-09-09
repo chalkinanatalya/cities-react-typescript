@@ -18,7 +18,7 @@ export const offer: Offer = {
     'isPro': true,
     'name': 'Angelina'
   },
-  'id': 1,
+  'id': Math.floor(Math.random() * 1000000000),
   'images': ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'],
   'isFavorite': true,
   'isPremium': false,
@@ -120,7 +120,7 @@ export const offers: Offers = [
     'goods': ['WiFi', 'Kitchen', 'Washing machine'],
     'host': {
       'avatarUrl': 'img/img/avatar-angelina.jpg',
-      'id': 5,
+      'id': Math.floor(Math.random() * 1000000000),
       'isPro': true,
       'name': 'Lucy'
     },
