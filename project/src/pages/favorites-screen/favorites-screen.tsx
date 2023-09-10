@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom';
 import Logo from '../../components/logo/logo';
-import { Offer} from '../../types/offer';
+import { Offer, Offers } from '../../types/offer';
 import PlaceCardInfo from '../../components/place-card-info/place-card-info';
 
 type FavoritesScreenProps = {
   offer: Offer;
+  offers: Offers;
 }
 
 function FavoritesScreen (props: FavoritesScreenProps): JSX.Element {
-  const {offer} = props;
+  const {offer, offers} = props;
+
   return (
     <>
       <div style={{ display: 'none' }}>
@@ -23,25 +25,27 @@ function FavoritesScreen (props: FavoritesScreenProps): JSX.Element {
             <section className="favorites">
               <h1 className="favorites__title">Saved listing</h1>
               <ul className="favorites__list">
-                <li className="favorites__locations-items">
-                  <div className="favorites__locations locations locations--current">
-                    <div className="locations__item">
-                      <Link to='/' className="locations__item-link">
-                        <span>Amsterdam</span>
-                      </Link>
-                    </div>
-                  </div>
-                  <div className="favorites__places">
-                    <article className="favorites__card place-card">
-                      <div className="favorites__image-wrapper place-card__image-wrapper">
-                        <Link to='/'>
-                          <img className="place-card__image" src="img/apartment-small-04.jpg" width="150" height="110" alt="Place image" />
+                {offers.map((off) => (
+                  <li key={off.id} className="favorites__locations-items">
+                    <div className="favorites__locations locations locations--current">
+                      <div className="locations__item">
+                        <Link to='/' className="locations__item-link">
+                          <span>Amsterdam</span>
                         </Link>
                       </div>
-                      <PlaceCardInfo offer={offer}/>
-                    </article>
-                  </div>
-                </li>
+                    </div>
+                    <div className="favorites__places">
+                      <article className="favorites__card place-card">
+                        <div className="favorites__image-wrapper place-card__image-wrapper">
+                          <Link to={`property/${offer.id}`}>
+                            <img className="place-card__image" src="img/apartment-small-04.jpg" width="150" height="110" alt="Place image" />
+                          </Link>
+                        </div>
+                        <PlaceCardInfo offer={offer}/>
+                      </article>
+                    </div>
+                  </li>
+                ))}
               </ul>
             </section>
           </div>

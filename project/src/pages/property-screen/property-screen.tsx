@@ -1,8 +1,9 @@
 import Logo from '../../components/logo/logo';
 import { Offer, Offers } from '../../types/offer';
-import { nanoid } from '@reduxjs/toolkit';
 import PlaceCardInfo from '../../components/place-card-info/place-card-info';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+
+//route from property to favorites does not work, fix
 
 type PropertyScreenProps = {
   offers: Offers;
@@ -11,6 +12,14 @@ type PropertyScreenProps = {
 
 function PropertyScreen(props: PropertyScreenProps): JSX.Element {
   const {offers, offer} = props;
+  const params = useParams();
+  const id = params.id;
+
+  const selectedOffer = offers.find((off) => off.id === Number(id));
+
+  if (!selectedOffer) {
+    return <div>Предложение не найдено</div>;
+  }
 
   if (!offer) {
     return <div>No offer available!</div>;
@@ -29,7 +38,7 @@ function PropertyScreen(props: PropertyScreenProps): JSX.Element {
           <section className="property">
             <div className="property__gallery-container container">
               <div className="property__gallery">
-                {offer.images.map((image) => <div className="property__image-wrapper" key={nanoid()}><img className="property__image" src={image} alt="Photo studio"/></div>)}
+                {offer.images.map((image) => <div className="property__image-wrapper" key={offer.id}><img className="property__image" src={image} alt="Photo studio"/></div>)}
               </div>
             </div>
             <div className="property__container container">
@@ -37,7 +46,7 @@ function PropertyScreen(props: PropertyScreenProps): JSX.Element {
                 {offer.isPremium ? <div className="property__mark"><span>Premium</span></div> : ''}
                 <div className="property__name-wrapper">
                   <h1 className="property__name">
-                    {offer.title}
+                    {selectedOffer.title}
                   </h1>
                   <button className="property__bookmark-button button" type="button">
                     <svg className="property__bookmark-icon" width="31" height="33">
@@ -71,7 +80,7 @@ function PropertyScreen(props: PropertyScreenProps): JSX.Element {
                 <div className="property__inside">
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
-                    {offer.goods.map((item) =><li key={nanoid()} className="property__inside-item">{item}</li>)}
+                    {offer.goods.map((item) =><li key={offer.id} className="property__inside-item">{item}</li>)}
                   </ul>
                 </div>
                 <div className="property__host">
@@ -177,7 +186,7 @@ function PropertyScreen(props: PropertyScreenProps): JSX.Element {
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
-                {offers.slice(0, 3).map((off) => (<article className="cities__card place-card" key={nanoid()}> {offer.isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ''}<div className="near-places__image-wrapper place-card__image-wrapper"><Link to='/'><img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="" /></Link></div><PlaceCardInfo offer={off} /></article>))}
+                {offers.slice(0, 3).map((off) => (<article className="cities__card place-card" key={off.id}> {offer.isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ''}<div className="near-places__image-wrapper place-card__image-wrapper"><Link to='/'><img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="" /></Link></div><PlaceCardInfo offer={off} /></article>))}
               </div>
             </section>
           </div>

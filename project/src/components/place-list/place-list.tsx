@@ -1,4 +1,3 @@
-import { nanoid } from '@reduxjs/toolkit';
 import { Offer } from '../../types/offer';
 import PlaceCardInfo from '../place-card-info/place-card-info';
 import { Link } from 'react-router-dom';
@@ -32,7 +31,7 @@ function PlaceList({ count, offer }: PlaceListProps): JSX.Element {
           </ul>
         </form>
         <div className="cities__places-list places__list tabs__content">
-          {Array(5).fill(null).map(() => (<article className="cities__card place-card" key={nanoid()} onMouseEnter={() => setActiveCard(offer)} onMouseLeave={() => setActiveCard(null)}> {offer.isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ''}<div className="cities__image-wrapper place-card__image-wrapper"><Link to='/'><img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="" /></Link></div><PlaceCardInfo offer={offer} /></article>)
+          {Array(5).fill(null).map(() => (<article className="cities__card place-card" key={offer.id} onMouseEnter={() => setActiveCard(offer)} onMouseLeave={() => setActiveCard(null)}> {offer.isPremium ? <div className="place-card__mark"><span>Premium</span></div> : ''}<div className="cities__image-wrapper place-card__image-wrapper"><Link to='/'><img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="" /></Link></div><PlaceCardInfo offer={offer} /></article>)
           )}
         </div>
       </section>
